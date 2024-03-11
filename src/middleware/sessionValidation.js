@@ -1,8 +1,7 @@
 const checkSession = (req, res, next) => {
-  const { isAuthenticated } = req;
-  const isUserAuthenticated = isAuthenticated();
+  const user = req.user;
   
-  if (isUserAuthenticated){
+  if (!user){
     return res.status(401).json({"message": "You are not logged in"});
   }
   next();
